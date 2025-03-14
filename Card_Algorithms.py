@@ -33,9 +33,6 @@ def duplicate_check(hand):
                     hand[i] = set_value()
     return hand
 
-# create_set()
-# print(f"\nHands to Choose from:\nFirst Hand:{set[0]}\nSecond Hand:{set[1]}\nThird Hand:{set[2]}\nFourth Hand:{set[3]}\n")
-
 def check_equal(hand):
     length = len(hand)
     handCopy = copy.copy(hand)
