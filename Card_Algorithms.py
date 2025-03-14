@@ -36,12 +36,17 @@ def duplicate_check(hand):
 # create_set()
 # print(f"\nHands to Choose from:\nFirst Hand:{set[0]}\nSecond Hand:{set[1]}\nThird Hand:{set[2]}\nFourth Hand:{set[3]}\n")
 
+
 def check_equal(hand):
     print(hand)
     length = len(hand)
     handCopy = copy.copy(hand)
+    if length < 1: #If there is no card
+        return False 
     if length == 1: #If there is only one card
         return True
+    if length > 4: #If there is more than 4 cards
+        return False
     
     for i in range(length):
         handCopy[i] = hand[i][2:]
