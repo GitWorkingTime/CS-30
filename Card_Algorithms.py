@@ -57,8 +57,10 @@ def check_equal(hand):
     
     for i in range(length):
         handCopy[i] = int(handCopy[i])
-    result = handCopy[1:] == handCopy[:-1]
-    return result
+    if handCopy[1:] == handCopy[:-1]:
+        return True
+    else:
+        return False
 
 def shuffle(hand):
     length = len(hand)
