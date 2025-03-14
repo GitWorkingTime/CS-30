@@ -1,4 +1,5 @@
 import random
+import copy
 
 value = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
 suite = ['♥', '♠', '♦', '♣' ]
@@ -32,12 +33,33 @@ def duplicate_check(hand):
                     hand[i] = set_value()
     return hand
 
+# create_set()
+# print(f"\nHands to Choose from:\nFirst Hand:{set[0]}\nSecond Hand:{set[1]}\nThird Hand:{set[2]}\nFourth Hand:{set[3]}\n")
 
-create_set()
-print(f"\nHands to Choose from:\nFirst Hand:{set[0]}\nSecond Hand:{set[1]}\nThird Hand:{set[2]}\nFourth Hand:{set[3]}\n")
+def check_equal(hand):
+    print(hand)
+    length = len(hand)
+    handCopy = copy.copy(hand)
+    if length == 1: #If there is only one card
+        return True
+    
+    for i in range(length):
+        handCopy[i] = hand[i][2:]
 
-def check_equal():
-    pass
+        if handCopy[i] == 'A':
+            handCopy[i] = 1
+        elif handCopy[i] == 'J':
+            handCopy[i] = 11
+        elif handCopy[i] == 'Q':
+            handCopy[i] = 12
+        elif handCopy[i] == 'K':
+            handCopy[i] = 13
+    
+    for i in range(length):
+        handCopy[i] = int(handCopy[i])
+    print(handCopy)
+    result = handCopy[1:] == handCopy[:-1]
+    return result
 
 def shuffle():
     pass
