@@ -14,7 +14,9 @@ def create_hand():
     length = random.randint(1, 13)
     hand = list(range(length))
     for i in range(length):
-        hand[i] = set_value()
+        value = set_value()
+        hand[i] = value
+    duplicate_check(hand)
     return hand
 
 def create_set():
@@ -22,8 +24,17 @@ def create_set():
         set.append(create_hand())
     return set
 
+def duplicate_check(hand):
+    for i in range(len(hand)):
+        for j in range(i):
+            if hand[i] == hand[j]:
+                while hand[j] == hand[i]:
+                    hand[i] = set_value()
+    return hand
+
+
 create_set()
-print(f"\nHands to Choose from:\nFirst Hand: {set[0]}\nSecond Hand: {set[1]}\nThird Hand: {set[2]}\n Fourth Hand: {set[3]}\n")
+print(f"\nHands to Choose from:\nFirst Hand:{set[0]}\nSecond Hand:{set[1]}\nThird Hand:{set[2]}\nFourth Hand:{set[3]}\n")
 
 def check_equal():
     pass
