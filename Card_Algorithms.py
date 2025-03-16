@@ -277,13 +277,13 @@ def shuffle(hand):
     """
 
     length = len(hand) #Find the number of items in the hand
-    print(f"Original: {hand}")
+    print(f"\nOriginal: {hand}")
 
     for i in range(length): #Go through the hand
         switchInd = random.randint(0, length - 1) #Choose randomly which other item to switch with
         hand[i], hand[switchInd] = hand[switchInd], hand[i] #Swap
     
-    print(f"Shuffled: {hand}")
+    print(f"Shuffled: {hand}\n")
     return hand #Return the shuffled hand
 
 def three_of_a_kind(hand):
@@ -471,7 +471,6 @@ def main_loop():
                 
             elif operationInput == "shuffle":
                 set[handInput] = shuffle(set[handInput])
-                print("\n")
 
             elif operationInput == "pair":
                 if num_of_pairs(set[handInput]) == -1:
