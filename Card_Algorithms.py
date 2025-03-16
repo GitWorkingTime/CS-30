@@ -154,15 +154,12 @@ def count_repeats(hand):
         count_repeats(['♦ J', '♣ K', '♥ 5', '♣ Q', '♣ A', '♦ 6', '♥ 6', '♣ 2'])
         >>> [1, 1, 0, 0, 1, 2, 0, 0, 0, 0, 1, 1, 1]
     """
-
     copiedHand = copy.copy(hand) #Copy the hand to use
-
     length = len(copiedHand) #Find the number of items in the hand
 
     #To remove the suits in front of the cards
     for i in range(length): 
         copiedHand[i] = copiedHand[i][2:] #Removes the first 2 characters
-
     copiedHand = convert_face_to_value(copiedHand) #Convert the face cards into its corresponding int values
     copiedHand = selection_sort(copiedHand) #Sort the hand for binary search
 
@@ -249,13 +246,11 @@ def check_equal(hand):
 
     length = len(hand) #Find the number of items in the hand
     handCopy = copy.copy(hand) #Create a copy so that we don't mutate the original
-    
-    #If the length is less than 1 (i.e: less than 1 card) or greater than 4 (i.e: more than 4 cards), return False
-    #It is only possible for all cards in a hand to be equal if it is between 1 to 4 cards
-    if length < 1 and length > 4:
-        return False
-    elif length == 1: #If there is only one card, return true
+
+    if length == 1: #If there is only one card, return true
         return True
+    elif length < 1:
+        return False
     
     for i in range(length): #Go through each item in the hand
         handCopy[i] = handCopy[i][2:] #Removes the first 2 characters
@@ -275,13 +270,18 @@ def shuffle(hand):
         >>> "Original: ['♥ 9', '♦ J', '♥ Q', '♠ 8', '♣ Q', '♦ 5', '♥ 2']"
         >>> "Shuffled: ['♦ J', '♥ Q', '♦ 5', '♥ 9', '♠ 8', '♣ Q', '♥ 2']"
     """
-
+    old = copy.copy(hand) #To compare with the previous version
     length = len(hand) #Find the number of items in the hand
-    print(f"\nOriginal: {hand}")
+    if length <= 1: #If there is only one card, return it
+        print(f"\nOriginal: {hand}")
+        print(f"Shuffled: {hand}\n")
+        return hand
 
-    for i in range(length): #Go through the hand
-        switchInd = random.randint(0, length - 1) #Choose randomly which other item to switch with
-        hand[i], hand[switchInd] = hand[switchInd], hand[i] #Swap
+    print(f"\nOriginal: {hand}")
+    while old == hand: #While the old and new is the same. This ensures that only a new shuffled deck is returned
+        for i in range(length): #Go through the hand
+            switchInd = random.randint(0, length - 1) #Choose randomly which other item to switch with
+            hand[i], hand[switchInd] = hand[switchInd], hand[i] #Swap
     
     print(f"Shuffled: {hand}\n")
     return hand #Return the shuffled hand
@@ -300,6 +300,9 @@ def three_of_a_kind(hand):
         three_of_a_kind(['♦ 2', '♣ 3', '♣ 6', '♥ 3', '♦ 3'])
         >>> True
     """
+    n = len(hand) #Find the number of items in the hand
+    if n < 3: #If there is less than 3 cards, return false
+        return False
 
     repeats = count_repeats(hand) #Count the number of repeats in the hand
 
@@ -324,7 +327,9 @@ def num_of_pairs(hand):
     """
     valueArr = copy.copy(hand) #Copy the hand so that the original doesn't mutate
     length = len(hand) #Find the number of items in the hand
-    over = True
+    pairList = []
+    tripletsList = []
+    quadrupleList = []
 
     #Go through the entire value hand
     for i in range(length): 
@@ -350,9 +355,10 @@ def num_of_pairs(hand):
             if valueArr[j] == value[targetInd]: #If the value is the same as the target
                 quadrupleInd.append(j) #Add on the index
                 continue #Move on to the next item
+        quadrupleList.append(quadrupleInd)
 
         #Print all of the Quadruples:
-        print(f"Quadruples: {hand[quadrupleInd[0]]} {hand[quadrupleInd[1]]} {hand[quadrupleInd[2]]} {hand[quadrupleInd[2]]}")
+        print(f"Quadruples: {hand[quadrupleInd[0]]} {hand[quadrupleInd[1]]} {hand[quadrupleInd[2]]} {hand[quadrupleInd[2]]}\n")
 
     #For triplets:
     for i in range(13): #13 to go through each repeats item
@@ -365,9 +371,9 @@ def num_of_pairs(hand):
             if valueArr[j] == value[targetInd]: #If the value is the same as the target
                 tripletsInd.append(j) #Add on the index
                 continue #Move on to the next item
-        
+        tripletsList.append(tripletsInd)
         #Print all of the Triplets:
-        print(f"Triples: {hand[tripletsInd[0]]} {hand[tripletsInd[1]]} {hand[tripletsInd[2]]}")
+        print(f"Triples: {hand[tripletsInd[0]]} {hand[tripletsInd[1]]} {hand[tripletsInd[2]]}\n")
 
     #For pairs:
     for i in range(13): #13 to go through each repeats item
@@ -381,8 +387,10 @@ def num_of_pairs(hand):
                 pairInd.append(j) #Add on the index
                 continue #Move on to the next item
         
+        pairList.append(pairInd)
         #Print all of the Pairs:
-        print(f"Pair: {hand[pairInd[0]]} {hand[pairInd[1]]}")
+        print(f"Pair: {hand[pairInd[0]]} {hand[pairInd[1]]}\n")
+    return quadrupleList, tripletsList, pairList
 
 
 def highest_pair(hand):
@@ -421,48 +429,96 @@ def highest_pair(hand):
             continue
     
     #Print the pair
-    print(f"Pair: {copiedHand[pairInd[0]]} {copiedHand[pairInd[1]]}")
-    pass
+    print(f"Pair: {copiedHand[pairInd[0]]} {copiedHand[pairInd[1]]}\n")
+    return pairInd
 
 # --------------------------------- #
 #Main functionality:
+
+def tests():
+    #Check Equal:
+    assert(check_equal(['♦ 4', '♦ K', '♠ 10'])) == False
+    assert(check_equal(['♦ 4'])) == True
+    assert(check_equal(['♠ 8', '♦ 6'])) == False
+    assert(check_equal(['♠ 10', '♥ Q', '♣ 4', '♣ 9', '♦ Q', '♦ 8', '♥ J', '♥ 9', '♠ K', '♥ 6', '♠ 3'])) == False
+    assert(check_equal([])) == False
+
+    #Shuffles: 
+    assert(shuffle(['♥ J', '♠ 5']) == ['♥ J', '♠ 5']) == False
+    assert(shuffle(['♠ 7', '♥ 5', '♣ 2']) == ['♠ 7', '♥ 5', '♣ 2']) == False
+    assert(shuffle(['♠ 10', '♦ 7', '♦ 10', '♥ 7', '♥ 6', '♦ 5', '♥ J', '♥ 8', '♦ 4']) == ['♠ 10', '♦ 7', '♦ 10', '♥ 7', '♥ 6', '♦ 5', '♥ J', '♥ 8', '♦ 4']) == False
+    
+    #Three of a kind:
+    assert(three_of_a_kind(['♦ 6', '♠ 9', '♣ 2', '♠ K', '♥ 6', '♥ 5', '♦ 3', '♣ 9', '♠ 5', '♥ 3'])) == False
+    assert(three_of_a_kind(['♦ Q', '♠ 8', '♣ J', '♦ 2', '♦ 8', '♠ J'])) == False
+    assert(three_of_a_kind(['♥ 10', '♣ 2', '♥ 2', '♦ 2'])) == True
+    assert(three_of_a_kind(['♣ A'])) == False
+    assert(three_of_a_kind([])) == False
+    
+    #Count pairs:
+    assert(num_of_pairs(['♠ 3', '♠ 6', '♠ J', '♥ A', '♠ 9'])) == -1
+    assert(num_of_pairs(['♠ 2', '♥ 7', '♥ 4', '♦ J', '♥ 8'])) == -1
+    assert(num_of_pairs(['♦ 4', '♥ 5', '♥ 4', '♠ 3', '♦ A', '♥ K', '♦ 9', '♥ 8', '♦ J', '♥ 7', '♣ 7', '♠ 9', '♥ Q'])) == ([], [], [[0, 2], [9, 10], [6, 11]])
+    assert(num_of_pairs(['♥ A', '♠ J', '♣ 4', '♣ Q', '♦ 7', '♥ 8', '♠ Q'])) == ([], [], [[3, 6]])
+    assert(num_of_pairs(['♣ 9', '♥ 3', '♠ 7', '♣ 10', '♠ 9', '♥ J', '♦ 2', '♥ 9', '♦ K', '♣ 6', '♠ 2', '♠ J', '♥ 8'])) == ([], [[0, 4, 7]], [[6, 10], [5, 11]])
+    assert(num_of_pairs(['♥ J', '♣ J', '♠ J', '♦ J'])) == ([[0, 1, 2, 3]], [], [])
+    
+    #Highest Pair
+    assert(highest_pair(['♥ Q', '♦ 10', '♦ 3', '♠ Q', '♣ K', '♦ 8', '♠ 5', '♣ 5', '♣ 4', '♦ 2', '♥ K', '♣ 7'])) == [4, 10]
+    assert(highest_pair(['♣ 3', '♦ 2', '♠ 7', '♣ K', '♥ Q', '♦ 4', '♦ 6', '♦ 5', '♣ 9'])) == -1
+    assert(highest_pair(['♦ 5', '♥ 10', '♠ 3', '♦ 7'])) == -1
+    assert(highest_pair(['♦ 9', '♠ Q', '♥ 7', '♦ A', '♣ 6', '♠ A', '♠ 2', '♣ K', '♦ 9'])) == [0, 8]
+    pass
+
 def main_loop():
-    set = create_set()
-    while True:
-        print(f"Hands Available:\n#1: {set[0]}\n#2: {set[1]}\n#3: {set[2]}\n#4: {set[3]}")
-        print("\nWhich hand would you like? (1, 2, 3, 4)")
+    """
+    Creates a hand and asks user input for which hand to use and what operations they want to do
+    """
 
-        handInput = input()
-        handInput = handInput.lower()
-        handInput = handInput.strip()
-        handInput = handInput.replace(" ", "")
-        if handInput == "exit":
-            break
+    set = create_set() #Create the hands
+    tests()
+    for i in range(14): #Create white space between the main functionality and the asserts because some of them prints onto the console
+        print("\n")
 
-        if handInput.isnumeric() == False:
+
+    while True: #While loop so that actions can be repeated
+        print(f"Hands Available:\n#1: {set[0]}\n#2: {set[1]}\n#3: {set[2]}\n#4: {set[3]}") #Show the hands
+        print("\nWhich hand would you like? (1, 2, 3, 4) OR type 'exit' to leave") #Ask the users what hand they would like to use
+
+        handInput = input() #Get user input
+        handInput = handInput.lower() #Convert into lowercase
+        handInput = handInput.strip() #Remove any white space outside of the string
+        handInput = handInput.replace(" ", "") #Remove any white space in between the characters
+        
+        if handInput == "exit": #If they want to leave
+            break #Leave the loop
+
+        if handInput.isnumeric() == False: #Double checks if the input is an int value
             print("\nPlease input an integer value. Try again\n")
-            continue
-        handInput = int(handInput) - 1
+            continue #Return to the top of this loop
+        handInput = int(handInput) - 1 #Converts into integer. '-1' to account for the way index is counted
 
-        if handInput > 3:
+        if handInput > 3: #If the hand chosen is more than what we have, make them choose the correct hand
             print("Please choose a hand\n")
-            continue
+            continue #Return to the top of this loop
 
-        print(f"Your chosen hand is {set[handInput]}\n")
-        while(True):
+        print(f"\nYour chosen hand is {set[handInput]}\n") #Announce what hand they have chosen
+        while(True): #Another while loop so that the operations can be repeated without changing the hand chosen
             print('''Which operation would you like to do?
             Check If all are equal(type 'equal')
             Shuffle the cards(type 'shuffle')
+            See if there is any three of a kind(type 'three')
             Find any pairs in the hand(type 'pair')
             Find the highest pair in the hand(type 'highest')
             Try another hand(type 'exit')''')
 
-            operationInput = input()
-            operationInput = operationInput.lower()
-            operationInput = operationInput.strip()
-            operationInput = operationInput.replace(" ", "")
-
-            if operationInput == "equal":
+            operationInput = input() #Get user input
+            operationInput = operationInput.lower() #Convert into lowercase
+            operationInput = operationInput.strip() #Remove any white space outside of the string
+            operationInput = operationInput.replace(" ", "") #Remove any white space in between the characters
+            
+            #Go through the operations
+            if operationInput == "equal": 
                 isEqual = check_equal(set[handInput])
                 if isEqual == False:
                     print("\nNo cards in this hand is the same\n")
@@ -472,16 +528,24 @@ def main_loop():
             elif operationInput == "shuffle":
                 set[handInput] = shuffle(set[handInput])
 
+            elif operationInput == "three":
+                if three_of_a_kind(set[handInput]) == True:
+                    print("\nThere is a three of a kind!\n")
+                else:
+                    print("\nThere is no three of a kind\n")
+
             elif operationInput == "pair":
-                if num_of_pairs(set[handInput]) == -1:
+                if num_of_pairs(set[handInput]) == -1: #If none were found
                     print("\nNo pair was found\n")
+
             elif operationInput == "highest":
-                if highest_pair(set[handInput]) == -1:
+                if highest_pair(set[handInput]) == -1: #If none were found
                     print("\nNo pair was found\n")
+
             elif operationInput == "exit":
-                break
+                break #Leave this loop
             else:
-                print("Please choose an appropriate operation!\n")
-                continue
+                print("\nPlease choose an appropriate operation!\n")
+                continue #Return to the top of this loop
         
-main_loop()
+main_loop() #Run the program
