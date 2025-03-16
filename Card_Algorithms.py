@@ -435,27 +435,28 @@ def highest_pair(hand):
 # --------------------------------- #
 #Main functionality:
 
+#For asserts
 def tests():
-    #Check Equal:
+    #For 'Check Equal':
     assert(check_equal(['♦ 4', '♦ K', '♠ 10'])) == False
     assert(check_equal(['♦ 4'])) == True
     assert(check_equal(['♠ 8', '♦ 6'])) == False
     assert(check_equal(['♠ 10', '♥ Q', '♣ 4', '♣ 9', '♦ Q', '♦ 8', '♥ J', '♥ 9', '♠ K', '♥ 6', '♠ 3'])) == False
     assert(check_equal([])) == False
 
-    #Shuffles: 
+    #For 'Shuffles': 
     assert(shuffle(['♥ J', '♠ 5']) == ['♥ J', '♠ 5']) == False
     assert(shuffle(['♠ 7', '♥ 5', '♣ 2']) == ['♠ 7', '♥ 5', '♣ 2']) == False
     assert(shuffle(['♠ 10', '♦ 7', '♦ 10', '♥ 7', '♥ 6', '♦ 5', '♥ J', '♥ 8', '♦ 4']) == ['♠ 10', '♦ 7', '♦ 10', '♥ 7', '♥ 6', '♦ 5', '♥ J', '♥ 8', '♦ 4']) == False
     
-    #Three of a kind:
+    #For 'Three of a kind':
     assert(three_of_a_kind(['♦ 6', '♠ 9', '♣ 2', '♠ K', '♥ 6', '♥ 5', '♦ 3', '♣ 9', '♠ 5', '♥ 3'])) == False
     assert(three_of_a_kind(['♦ Q', '♠ 8', '♣ J', '♦ 2', '♦ 8', '♠ J'])) == False
     assert(three_of_a_kind(['♥ 10', '♣ 2', '♥ 2', '♦ 2'])) == True
     assert(three_of_a_kind(['♣ A'])) == False
     assert(three_of_a_kind([])) == False
     
-    #Count pairs:
+    #For 'Count pairs':
     assert(num_of_pairs(['♠ 3', '♠ 6', '♠ J', '♥ A', '♠ 9'])) == -1
     assert(num_of_pairs(['♠ 2', '♥ 7', '♥ 4', '♦ J', '♥ 8'])) == -1
     assert(num_of_pairs(['♦ 4', '♥ 5', '♥ 4', '♠ 3', '♦ A', '♥ K', '♦ 9', '♥ 8', '♦ J', '♥ 7', '♣ 7', '♠ 9', '♥ Q'])) == ([], [], [[0, 2], [9, 10], [6, 11]])
@@ -463,12 +464,11 @@ def tests():
     assert(num_of_pairs(['♣ 9', '♥ 3', '♠ 7', '♣ 10', '♠ 9', '♥ J', '♦ 2', '♥ 9', '♦ K', '♣ 6', '♠ 2', '♠ J', '♥ 8'])) == ([], [[0, 4, 7]], [[6, 10], [5, 11]])
     assert(num_of_pairs(['♥ J', '♣ J', '♠ J', '♦ J'])) == ([[0, 1, 2, 3]], [], [])
     
-    #Highest Pair
+    #For 'Highest Pair':
     assert(highest_pair(['♥ Q', '♦ 10', '♦ 3', '♠ Q', '♣ K', '♦ 8', '♠ 5', '♣ 5', '♣ 4', '♦ 2', '♥ K', '♣ 7'])) == [4, 10]
     assert(highest_pair(['♣ 3', '♦ 2', '♠ 7', '♣ K', '♥ Q', '♦ 4', '♦ 6', '♦ 5', '♣ 9'])) == -1
     assert(highest_pair(['♦ 5', '♥ 10', '♠ 3', '♦ 7'])) == -1
     assert(highest_pair(['♦ 9', '♠ Q', '♥ 7', '♦ A', '♣ 6', '♠ A', '♠ 2', '♣ K', '♦ 9'])) == [0, 8]
-    pass
 
 def main_loop():
     """
