@@ -281,7 +281,7 @@ def shuffle(hand):
     while old == hand: #While the old and new is the same. This ensures that only a new shuffled deck is returned
         for i in range(length): #Go through the hand
             switchInd = random.randint(0, length - 1) #Choose randomly which other item to switch with
-            hand[i], hand[switchInd] = hand[switchInd], hand[i] #Swap
+            hand[i], hand[switchInd] = hand[switchInd], hand[i] #Swap (We do want to mutate this one)
     
     print(f"Shuffled: {hand}\n")
     return hand #Return the shuffled hand
