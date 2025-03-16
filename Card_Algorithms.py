@@ -340,8 +340,8 @@ def num_of_pairs(hand):
     if length <= 1:
         return -1
     
-    if (2 in repeats) == False and (3 in repeats) == False and (4 in repeats) == False:
-        return -1
+    if (2 in repeats) == False and (3 in repeats) == False and (4 in repeats) == False: #Checks to see if there are any repeats at all
+        return -1 #Return '-1' if none are found
 
     #For quadruplets:
     for i in range(13): #13 to go through each repeats item
