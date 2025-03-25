@@ -44,6 +44,11 @@ student3 = Student("Imaad", 90, 87, 95, 0, "Music")
 #Puts all of the instances into a list
 students = [student1, student2, student3]
 
+#Goes through the entire list
+for i in range(3):
+    students[i].printAttributes() #Print each instance
+    print("") #Add a new line below it for spacing
+
 class Teacher():
     """
     Creates a class with attributes intialized in the '__init__' constructor
@@ -84,3 +89,7 @@ teacher3 = Teacher("Mr. Him", "Drama", "Jazz apples", "Blue", 76, 85)
 #Put all of the instances into a list
 teachers = [teacher1, teacher2, teacher3]
 
+#Goes through the entire list
+for i in range(3):
+    teachers[i].printAttributes() #Print each instance
+    print("") #Add a new line below it for spacing
