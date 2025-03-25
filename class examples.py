@@ -11,7 +11,7 @@ class Glasses:
         Attributes:
             self -> this instance
             blueLightFilter -> does the glasses have blue light filter?
-            thickness -> how thick are the glasses' lenses?
+            thickness -> how thick are the glasses' lenses? (in mm)
             frames -> what type of frame is used?
             lens -> what type of lens is used?
             shape -> what is the shape of the glasses?
@@ -23,3 +23,7 @@ class Glasses:
         self.frames = frames
         self.lens = lens
         self.shape = shape
+
+#Creates the instances with the attributes
+ethansGlasses = Glasses(True, 10, "thin wire", "concave", "square")
+danielsGlasses = Glasses(True, 12, "half rim", "concave", "round")
