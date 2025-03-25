@@ -10,18 +10,16 @@ class Student():
         pass
 
     def print(self):
-        print(f"Name: {self.name}")
-
-
+        print(f"Name: {self.name} Module 1 Grade: {self.module1Grade} Module 2 Grade: {self.module2Grade} Module 3 Grade: {self.module3Grade} Average: {self.average}, Remaining Course: {self.remainingCourse}")
         pass
 
 student = Student("Mark", 90, 65, 80, 0, "English")
-print(student.name)
-print(student.module1Grade)
-print(student.module2Grade)
-print(student.module3Grade)
-print(student.average)
-print(student.remainingCourse)
+# print(student.name)
+# print(student.module1Grade)
+# print(student.module2Grade)
+# print(student.module3Grade)
+# print(student.average)
+# print(student.remainingCourse)
 student.print()
 
 class Teacher():
