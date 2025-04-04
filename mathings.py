@@ -80,22 +80,28 @@ class Main():
         case '0':
             print("Choose first number:")
             num1 = input()
-            if checkForLetters(num1) == True:
-                while checkForLetters(num1) == True:
+            num1 = cleanUpInput(num1)
+            if validate_input(num1) == False:
+                while validate_input(num1) == False:
                     print("Try again!")
                     num1 = input()
+                    num1 = cleanUpInput(num1)
                 
             num1 = int(num1)
+
             print("Choose second number:")
             num2 = input()
-            if checkForLetters(num2) == True:
-                while checkForLetters(num2) == True:
+            num2 = cleanUpInput(num2)
+            if validate_input(num2) == False:
+                while validate_input(num2) == False:
                     print("Try again!")
                     num2 = input()
+                    num2 = cleanUpInput(num2)
             
             num2 = int(num2)
-            sum = Mathings.addition(num1, num2)
-            print(f"The sum is: {sum}")
+
+            result = Mathings.addition(num1, num2)
+            print(f"The sum is: {result}")
         case '1':
             print("subtracting")
         case '2':
