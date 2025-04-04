@@ -206,6 +206,30 @@ class Main():
             print(f"The hypotenuse is: {result}")
             pass
         case '5':
+            print("Choose first number:")
+            num1 = input()
+            num1 = cleanUpInput(num1)
+            if validate_input(num1) == False:
+                while validate_input(num1) == False:
+                    print("Try again!")
+                    num1 = input()
+                    num1 = cleanUpInput(num1)
+                
+            num1 = int(num1)
+
+            print("Choose second number:")
+            num2 = input()
+            num2 = cleanUpInput(num2)
+            if validate_input(num2) == False:
+                while validate_input(num2) == False:
+                    print("Try again!")
+                    num2 = input()
+                    num2 = cleanUpInput(num2)
+            
+            num2 = int(num2)
+
+            result = Mathings.pow(num1, num2)
+            print(f"The result is: {result}")
             pass
         case '6':
             pass
