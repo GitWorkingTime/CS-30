@@ -277,7 +277,13 @@ class Main():
 
         #Get the user input
         operation = input()
-        if operation == '0':
+        if operation == 'name':
+            #Print my name
+            print("Daniel Lee\n")
+
+            #Go to the next iteration of the loop
+            continue
+        elif operation == '0':
             #Go through choosing the numbers
             num = choosingNumbers()
 
