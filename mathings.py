@@ -268,6 +268,3 @@ class Main():
             print("Try again!")
 
     pass
-
-# if types(ans) != int:
-#try: expt:
