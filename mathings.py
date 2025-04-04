@@ -38,233 +38,221 @@ class Mathings:
     
     @staticmethod
     def short1():
-        return None
+        ans = '''
+                A static method is a method that is independent from an instance. This means that it can be called
+                directly from a class without the need of an instance or object. This means that the function cannot use 
+                the keyword, self, and is applicable to anywhere in the code. 
+                '''
+        return ans
     
     @staticmethod
     def short2():
-        return None
+        ans = '''
+                The @staticmethod decorator is placed on the line directly above a method to turn it into a static
+                method.
+                '''
+        return ans
     
     @staticmethod
     def short3():
-        return None
+        ans = '''
+                The difference between a static and an instance method is that a static method does not need an object
+                or instance to be called whereas the instance method does.
+                '''
+        return ans
     
     @staticmethod
     def exit():
         return None
 
-class Main():
-    def cleanUpInput(user):
-        user = user.strip()
-        user = user.replace(" ", "")
-        return user
-    
-    def validate_input(text):
-        allowed_chars = set("0123456789+-")
-        return all(char in allowed_chars for char in text)
+def cleanUpInput(user):
+    user = user.strip()
+    user = user.lower()
+    user = user.replace(" ", "")
+    return user
 
-    print('''Hello! Please choose one operation to use:
-          Addition (0)
-          Subtraction(1)
-          Multiplication(2)
-          Division(3)
-          Pythagoras(4)
-          Power(5)
-          GetKthdigit(6)
-          Short1(7)
-          Short2(8)
-          Short3(9)
-          ''')
-    
-    operation = input()
-    match operation:
-        case '0':
-            print("Choose first number:")
-            num1 = input()
-            num1 = cleanUpInput(num1)
-            if validate_input(num1) == False:
-                while validate_input(num1) == False:
-                    print("Try again!")
-                    num1 = input()
-                    num1 = cleanUpInput(num1)
-                
-            num1 = int(num1)
+def validate_input(text):
+    for i in range(len(text)):
+        if (text[i] == '+' or text[i] == '-') and i != 0:
+            return False
 
-            print("Choose second number:")
-            num2 = input()
-            num2 = cleanUpInput(num2)
-            if validate_input(num2) == False:
-                while validate_input(num2) == False:
-                    print("Try again!")
-                    num2 = input()
-                    num2 = cleanUpInput(num2)
-            
-            num2 = int(num2)
+    allowed_chars = set("0123456789+-")
+    return all(char in allowed_chars for char in text)
 
-            result = Mathings.addition(num1, num2)
-            print(f"The sum is: {result}")
-        case '1':
-            print("Choose first number:")
-            num1 = input()
-            num1 = cleanUpInput(num1)
-            if validate_input(num1) == False:
-                while validate_input(num1) == False:
-                    print("Try again!")
-                    num1 = input()
-                    num1 = cleanUpInput(num1)
-                
-            num1 = int(num1)
-
-            print("Choose second number:")
-            num2 = input()
-            num2 = cleanUpInput(num2)
-            if validate_input(num2) == False:
-                while validate_input(num2) == False:
-                    print("Try again!")
-                    num2 = input()
-                    num2 = cleanUpInput(num2)
-            
-            num2 = int(num2)
-
-            result = Mathings.subtraction(num1, num2)
-            print(f"The difference is: {result}")
-        case '2':
-            print("Choose first number:")
-            num1 = input()
-            num1 = cleanUpInput(num1)
-            if validate_input(num1) == False:
-                while validate_input(num1) == False:
-                    print("Try again!")
-                    num1 = input()
-                    num1 = cleanUpInput(num1)
-                
-            num1 = int(num1)
-
-            print("Choose second number:")
-            num2 = input()
-            num2 = cleanUpInput(num2)
-            if validate_input(num2) == False:
-                while validate_input(num2) == False:
-                    print("Try again!")
-                    num2 = input()
-                    num2 = cleanUpInput(num2)
-            
-            num2 = int(num2)
-
-            result = Mathings.multiplication(num1, num2)
-            print(f"The product is: {result}")
-            pass
-        case '3':
-            print("Choose first number:")
-            num1 = input()
-            num1 = cleanUpInput(num1)
-            if validate_input(num1) == False:
-                while validate_input(num1) == False:
-                    print("Try again!")
-                    num1 = input()
-                    num1 = cleanUpInput(num1)
-                
-            num1 = int(num1)
-
-            print("Choose second number:")
-            num2 = input()
-            num2 = cleanUpInput(num2)
-            if validate_input(num2) == False:
-                while validate_input(num2) == False:
-                    print("Try again!")
-                    num2 = input()
-                    num2 = cleanUpInput(num2)
-            
-            num2 = int(num2)
-
-            result = Mathings.division(num1, num2)
-            print(f"The quotient is: {result}")
-            pass
-        case '4':
-            print("Choose first number:")
-            num1 = input()
-            num1 = cleanUpInput(num1)
-            if validate_input(num1) == False:
-                while validate_input(num1) == False:
-                    print("Try again!")
-                    num1 = input()
-                    num1 = cleanUpInput(num1)
-                
-            num1 = int(num1)
-
-            print("Choose second number:")
-            num2 = input()
-            num2 = cleanUpInput(num2)
-            if validate_input(num2) == False:
-                while validate_input(num2) == False:
-                    print("Try again!")
-                    num2 = input()
-                    num2 = cleanUpInput(num2)
-            
-            num2 = int(num2)
-
-            result = Mathings.pythagoras(num1, num2)
-            print(f"The hypotenuse is: {result}")
-            pass
-        case '5':
-            print("Choose first number:")
-            num1 = input()
-            num1 = cleanUpInput(num1)
-            if validate_input(num1) == False:
-                while validate_input(num1) == False:
-                    print("Try again!")
-                    num1 = input()
-                    num1 = cleanUpInput(num1)
-                
-            num1 = int(num1)
-
-            print("Choose second number:")
-            num2 = input()
-            num2 = cleanUpInput(num2)
-            if validate_input(num2) == False:
-                while validate_input(num2) == False:
-                    print("Try again!")
-                    num2 = input()
-                    num2 = cleanUpInput(num2)
-            
-            num2 = int(num2)
-
-            result = Mathings.pow(num1, num2)
-            print(f"The result is: {result}")
-            pass
-        case '6':
-            print("Input number:")
-            num1 = input()
-            num1 = cleanUpInput(num1)
-            if validate_input(num1) == False:
-                while validate_input(num1) == False:
-                    print("Try again!")
-                    num1 = input()
-                    num1 = cleanUpInput(num1)
-                
-            num1 = int(num1)
-
-            print("Input digit:")
-            num2 = input()
-            num2 = cleanUpInput(num2)
-            if validate_input(num2) == False:
-                while validate_input(num2) == False:
-                    print("Try again!")
-                    num2 = input()
-                    num2 = cleanUpInput(num2)
-            
-            num2 = int(num2)
-            num2 -= 1
-
-            result = Mathings.getKthDigit(num1, num2)
-            print(f"The '{num2 + 1}' digit from the right is: {result}")
-            pass
-        case '7':
-            pass
-        case '8':
-            pass
-        case '9':
-            pass
-        case _:
+def choosingNumbers():
+    print("Choose first number:")
+    num1 = input()
+    num1 = cleanUpInput(num1)
+    if validate_input(num1) == False:
+        while validate_input(num1) == False:
             print("Try again!")
+            num1 = input()
+            num1 = cleanUpInput(num1)
+        
+    num1 = int(num1)
 
-    pass
+    print("Choose second number:")
+    num2 = input()
+    num2 = cleanUpInput(num2)
+    if validate_input(num2) == False:
+        while validate_input(num2) == False:
+            print("Try again!")
+            num2 = input()
+            num2 = cleanUpInput(num2)
+    
+    num2 = int(num2)
+    return num1, num2
+
+class Main():
+    while True:
+        print('''Hello! Please choose one operation to use:
+            Addition (0)
+            Subtraction(1)
+            Multiplication(2)
+            Division(3)
+            Pythagoras(4)
+            Power(5)
+            GetKthdigit(6)
+            Short1(7)
+            Short2(8)
+            Short3(9)
+        ''')
+        operation = input()
+        if operation == '0':
+            num = choosingNumbers()
+            result = Mathings.addition(num[0], num[1])
+            print(f"The sum is: {result}\n")
+
+            print("Do you wish to continue? Type 'yes' to continue or type anything else to exit")
+            user = input() 
+            user = cleanUpInput(user)
+            
+            if user == "yes":
+                print("")
+                continue
+            else:
+                break
+            
+        elif operation == '1':
+            num = choosingNumbers()
+            result = Mathings.subtraction(num[0], num[1])
+            print(f"The difference is: {result}")
+
+        elif operation == '2':
+            num = choosingNumbers()
+            result = Mathings.multiplication(num[0], num[1])
+            print(f"The product is: {result}")
+
+            print("Do you wish to continue? Type 'yes' to continue or type anything else to exit")
+            user = input() 
+            user = cleanUpInput(user)
+            
+            if user == "yes":
+                print("")
+                continue
+            else:
+                break
+
+        elif operation == '3':
+            num = choosingNumbers()
+            result = Mathings.division(num[0], num[1])
+            print(f"The quotient is: {result}")
+
+            print("Do you wish to continue? Type 'yes' to continue or type anything else to exit")
+            user = input() 
+            user = cleanUpInput(user)
+            
+            if user == "yes":
+                print("")
+                continue
+            else:
+                break
+
+        elif operation == '4':
+            num = choosingNumbers()
+
+            result = Mathings.pythagoras(num[0], num[1])
+            print(f"The hypotenuse is: {result}")
+
+            print("Do you wish to continue? Type 'yes' to continue or type anything else to exit")
+            user = input() 
+            user = cleanUpInput(user)
+            
+            if user == "yes":
+                print("")
+                continue
+            else:
+                break
+
+        elif operation == '5':
+            num = choosingNumbers()
+            result = Mathings.pow(num[0], num[1])
+            print(f"The result is: {result}")
+
+            print("Do you wish to continue? Type 'yes' to continue or type anything else to exit")
+            user = input() 
+            user = cleanUpInput(user)
+            
+            if user == "yes":
+                print("")
+                continue
+            else:
+                break
+
+        elif operation == '6':
+            num = choosingNumbers()
+            result = Mathings.getKthDigit(num[0], num[1] - 1)
+            print(f"The '{num[1]}' digit from the right is: {result}")
+
+            print("Do you wish to continue? Type 'yes' to continue or type anything else to exit")
+            user = input() 
+            user = cleanUpInput(user)
+            
+            if user == "yes":
+                print("")
+                continue
+            else:
+                break
+
+        elif operation == '7':
+            print(Mathings.short1())
+
+            print("Do you wish to continue? Type 'yes' to continue or type anything else to exit")
+            user = input() 
+            user = cleanUpInput(user)
+            
+            if user == "yes":
+                print("")
+                continue
+            else:
+                break
+
+        elif operation == '8':
+            print(Mathings.short2())
+
+            print("Do you wish to continue? Type 'yes' to continue or type anything else to exit")
+            user = input() 
+            user = cleanUpInput(user)
+            
+            if user == "yes":
+                print("")
+                continue
+            else:
+                break
+
+        elif operation == '9':
+            print(Mathings.short3())
+            
+            print("Do you wish to continue? Type 'yes' to continue or type anything else to exit")
+            user = input() 
+            user = cleanUpInput(user)
+            
+            if user == "yes":
+                print("")
+                continue
+            else:
+                break
+            
+        else:
+            print("Try Again!")
+        
