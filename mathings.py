@@ -53,24 +53,14 @@ class Mathings:
         return None
 
 class Main():
-    def checkForLetters(str):
-        alphabet = "abcdefghijklmnopqrstuvwxyz"
-        hasLetters = False
-        str = str.strip()
-        if str == "":
-            return True
-
-        for i in range(len(str)):
-            if hasLetters == True:
-                break
-
-            if str[i] in alphabet:
-                hasLetters = True
-        
-        if str.isalpha() == False:
-            return True
-
-        return hasLetters
+    def cleanUpInput(user):
+        user = user.strip()
+        user = user.replace(" ", "")
+        return user
+    
+    def validate_input(text):
+        allowed_chars = set("0123456789+-")
+        return all(char in allowed_chars for char in text)
 
     print('''Hello! Please choose one operation to use:
           Addition (0)
