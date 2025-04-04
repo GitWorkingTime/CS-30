@@ -232,6 +232,31 @@ class Main():
             print(f"The result is: {result}")
             pass
         case '6':
+            print("Input number:")
+            num1 = input()
+            num1 = cleanUpInput(num1)
+            if validate_input(num1) == False:
+                while validate_input(num1) == False:
+                    print("Try again!")
+                    num1 = input()
+                    num1 = cleanUpInput(num1)
+                
+            num1 = int(num1)
+
+            print("Input digit:")
+            num2 = input()
+            num2 = cleanUpInput(num2)
+            if validate_input(num2) == False:
+                while validate_input(num2) == False:
+                    print("Try again!")
+                    num2 = input()
+                    num2 = cleanUpInput(num2)
+            
+            num2 = int(num2)
+            num2 -= 1
+
+            result = Mathings.getKthDigit(num1, num2)
+            print(f"The '{num2 + 1}' digit from the right is: {result}")
             pass
         case '7':
             pass
