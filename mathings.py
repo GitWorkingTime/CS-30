@@ -31,6 +31,7 @@ class Mathings:
 
     @staticmethod
     def division(x, y):
+        #Can't divide by 0
         if y == 0:
             return None
 
