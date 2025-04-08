@@ -12,15 +12,17 @@ class Rectangle():
         baseArea = self.width * self.length
         side1Area = self.width * self.height
         side2Area = self.length * self.height
-        surfaceArea = (2 * baseArea) + (2 * side1Area) + (2 * side2Area)
-        print(f"The surface area is {surfaceArea}")
+        surfaceArea = round((2 * baseArea) + (2 * side1Area) + (2 * side2Area), 2)
+        print(f"The {self.name}'s Surface Area is {surfaceArea} meters squared")
     
     def print_perimeter(self):
-        perimeter = (2 * self.width) + (2 * self.length)
-        print(f"The perimeter is {perimeter}")
+        perimeter = round((2 * self.width) + (2 * self.length), 2)
+        print(f"The {self.name}'s Perimeter is equal to {perimeter} meters")
 
     def print_volume(self):
-        volume = self.height * self.width * self.length
-        print(f"The volume is {volume}")
-
+        volume = round(self.height * self.width * self.length, 2)
+        if self.height == 0:
+            print(f"The {self.name} is not a rectangular prism. Volume cannot be computed")
+        else:
+            print(f"The {self.name} is a rectangular prism. It has a volume of {volume} cubic meters")
     pass

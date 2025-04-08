@@ -8,19 +8,22 @@ class Circle():
         pass
 
     def get_name(self):
-        return f"The name is {self.name}"
+        return self.name
     
     def print_area(self):
         circleArea = math.pi * (self.radius**2)
         rectangleArea = (2 * math.pi * self.radius) * self.height
-        surface = (2 * circleArea) + rectangleArea
-        print(f"The area is {surface}")
+        surface = round((2 * circleArea) + rectangleArea, 2)
+        print(f"The {self.name}'s Area is equal to {surface} meters squared")
 
     def print_circumference(self):
-        circumerference = 2 * math.pi * self.radius
-        print(f"The circumeference is {circumerference}")
+        circumerference = round(2 * math.pi * self.radius, 2)
+        print(f"The {self.name}'s Circumeference is equal to {circumerference} meters")
     
     def print_volume(self):
         area = math.pi * (self.radius**2)
-        volume = area * self.height
-        print(f"The volume is {volume}")
+        volume = round(area * self.height, 2)
+        if self.height == 0:
+            print(f"The {self.name} is not a cylinder. Volume cannot be computed")
+        else:
+            print(f"The {self.name} is a cylinder. It has a volume of {volume} cubic meters")
