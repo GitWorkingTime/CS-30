@@ -1,5 +1,5 @@
-from circle import *
-from rectangle import *
+from DanielCircle import *
+from Danielrectangle import *
 
 manHole = Circle("Man Hole", 0.5)
 towerOfPisa = Circle("Tower Of Pisa", 20, 80)
@@ -22,6 +22,31 @@ for i in range(len(rectangles)):
     rectangles[i].print_perimeter()
     rectangles[i].print_volume()
     print("")
+
+circle1 = Circle("Circle1", 5)
+circle2 = Circle("Circle2", 10, 2)
+circle3 = Circle("Circle3", 3, -3)
+def tests():
+    print("testing...")
+    assert(circle1.get_name()) == "Circle1"
+    assert(circle1.print_area()) == 157.08
+    assert(circle1.print_circumference()) == 31.42
+    assert(circle1.print_volume()) == 0.0
+
+    assert(circle2.get_name()) == "Circle2"
+    assert(circle2.print_area()) == 753.98
+    assert(circle2.print_circumference()) == 62.83
+    assert(circle2.print_volume()) == 628.32
+
+    assert(circle3.get_name()) == "Circle3"
+    assert(circle3.print_area()) == 113.1
+    assert(circle3.print_circumference()) == 18.85
+    assert(circle3.print_volume()) == 84.82
+    print("finished\n")
+
+    pass
+
+tests()
 
 class Main():
     while True:

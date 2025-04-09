@@ -3,8 +3,8 @@ import math
 class Circle():
     def __init__(self, name, radius, height = 0):
         self.name = name
-        self.radius = radius
-        self.height = height
+        self.radius = abs(radius)
+        self.height = abs(height)
         pass
 
     def get_name(self):
@@ -15,10 +15,12 @@ class Circle():
         rectangleArea = (2 * math.pi * self.radius) * self.height
         surface = round((2 * circleArea) + rectangleArea, 2)
         print(f"The {self.name}'s Area is equal to {surface} meters squared")
+        return surface
 
     def print_circumference(self):
         circumerference = round(2 * math.pi * self.radius, 2)
         print(f"The {self.name}'s Circumeference is equal to {circumerference} meters")
+        return circumerference
     
     def print_volume(self):
         area = math.pi * (self.radius**2)
@@ -27,3 +29,4 @@ class Circle():
             print(f"The {self.name} is not a cylinder. Volume cannot be computed")
         else:
             print(f"The {self.name} is a cylinder. It has a volume of {volume} cubic meters")
+        return volume
